@@ -3,7 +3,7 @@ Upstream-Name: libfyaml
 Source: https://github.com/pantoniou/libfyaml
 
 Files: *
-Copyright: 2019 Pantelis Antoniou <pantelis.antoniou@konsulko.com>
+Copyright: 2019-2021 Pantelis Antoniou <pantelis.antoniou@konsulko.com>
 License: MIT
 
 Files: debian/*
