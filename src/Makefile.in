@@ -100,7 +100,8 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_enable_debug.m4 \
 	$(top_srcdir)/m4/ax_pthread.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/shave.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/shave.m4 $(top_srcdir)/.libtool-version \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(include_HEADERS) \
@@ -139,43 +140,32 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libfyaml_@MAJOR@_@MINOR@_la_LIBADD =
+libfyaml_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am_libfyaml_@MAJOR@_@MINOR@_la_OBJECTS =  \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-parse.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utf8.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-types.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-diag.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-dump.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-atom.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-ctype.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-token.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-input.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-docstate.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-doc.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-emit.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utils.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-event.lo \
-	xxhash/libfyaml_@MAJOR@_@MINOR@_la-xxhash.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-accel.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-walk.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-path.lo \
-	lib/libfyaml_@MAJOR@_@MINOR@_la-fy-composer.lo
-libfyaml_@MAJOR@_@MINOR@_la_OBJECTS =  \
-	$(am_libfyaml_@MAJOR@_@MINOR@_la_OBJECTS)
+am_libfyaml_la_OBJECTS = lib/libfyaml_la-fy-parse.lo \
+	lib/libfyaml_la-fy-utf8.lo lib/libfyaml_la-fy-types.lo \
+	lib/libfyaml_la-fy-diag.lo lib/libfyaml_la-fy-dump.lo \
+	lib/libfyaml_la-fy-atom.lo lib/libfyaml_la-fy-ctype.lo \
+	lib/libfyaml_la-fy-token.lo lib/libfyaml_la-fy-input.lo \
+	lib/libfyaml_la-fy-docstate.lo lib/libfyaml_la-fy-doc.lo \
+	lib/libfyaml_la-fy-docbuilder.lo lib/libfyaml_la-fy-emit.lo \
+	lib/libfyaml_la-fy-utils.lo lib/libfyaml_la-fy-event.lo \
+	xxhash/libfyaml_la-xxhash.lo lib/libfyaml_la-fy-accel.lo \
+	lib/libfyaml_la-fy-walk.lo lib/libfyaml_la-fy-path.lo \
+	lib/libfyaml_la-fy-composer.lo
+libfyaml_la_OBJECTS = $(am_libfyaml_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-libfyaml_@MAJOR@_@MINOR@_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) \
-	$(libfyaml_@MAJOR@_@MINOR@_la_LDFLAGS) $(LDFLAGS) -o $@
+libfyaml_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libfyaml_la_CFLAGS) \
+	$(CFLAGS) $(libfyaml_la_LDFLAGS) $(LDFLAGS) -o $@
 @HAVE_LIBYAML_TRUE@am__EXEEXT_1 = libfyaml-parser$(EXEEXT)
 PROGRAMS = $(bin_PROGRAMS) $(noinst_PROGRAMS)
 am_fy_tool_OBJECTS = tool/fy_tool-fy-tool.$(OBJEXT)
 fy_tool_OBJECTS = $(am_fy_tool_OBJECTS)
-fy_tool_DEPENDENCIES = libfyaml-@MAJOR@.@MINOR@.la
+fy_tool_DEPENDENCIES = libfyaml.la
 fy_tool_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(fy_tool_CFLAGS) \
 	$(CFLAGS) $(fy_tool_LDFLAGS) $(LDFLAGS) -o $@
@@ -185,8 +175,7 @@ am__libfyaml_parser_SOURCES_DIST = internal/libfyaml-parser.c \
 libfyaml_parser_OBJECTS = $(am_libfyaml_parser_OBJECTS)
 am__DEPENDENCIES_1 =
 @HAVE_LIBYAML_TRUE@libfyaml_parser_DEPENDENCIES =  \
-@HAVE_LIBYAML_TRUE@	$(am__DEPENDENCIES_1) \
-@HAVE_LIBYAML_TRUE@	libfyaml-@MAJOR@.@MINOR@.la
+@HAVE_LIBYAML_TRUE@	$(am__DEPENDENCIES_1) libfyaml.la
 libfyaml_parser_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libfyaml_parser_CFLAGS) $(CFLAGS) $(libfyaml_parser_LDFLAGS) \
@@ -225,10 +214,10 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libfyaml_@MAJOR@_@MINOR@_la_SOURCES) $(fy_tool_SOURCES) \
+SOURCES = $(libfyaml_la_SOURCES) $(fy_tool_SOURCES) \
 	$(libfyaml_parser_SOURCES)
-DIST_SOURCES = $(libfyaml_@MAJOR@_@MINOR@_la_SOURCES) \
-	$(fy_tool_SOURCES) $(am__libfyaml_parser_SOURCES_DIST)
+DIST_SOURCES = $(libfyaml_la_SOURCES) $(fy_tool_SOURCES) \
+	$(am__libfyaml_parser_SOURCES_DIST)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -285,7 +274,6 @@ CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
-DEBVERSION = @DEBVERSION@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
 DLLTOOL = @DLLTOOL@
@@ -324,6 +312,7 @@ LIBLTDL = @LIBLTDL@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
+LIBTOOL_VERSION = @LIBTOOL_VERSION@
 LIBYAML_CFLAGS = @LIBYAML_CFLAGS@
 LIBYAML_LIBS = @LIBYAML_LIBS@
 LIPO = @LIPO@
@@ -437,8 +426,8 @@ AM_CPPFLAGS = \
         -I$(top_srcdir)/include
 
 AM_CFLAGS = 
-lib_LTLIBRARIES = libfyaml-@MAJOR@.@MINOR@.la
-libfyaml_@MAJOR@_@MINOR@_la_SOURCES = \
+lib_LTLIBRARIES = libfyaml.la
+libfyaml_la_SOURCES = \
         lib/fy-parse.c lib/fy-parse.h \
 	lib/fy-utf8.c lib/fy-utf8.h \
 	lib/fy-types.c lib/fy-types.h \
@@ -452,6 +441,7 @@ libfyaml_@MAJOR@_@MINOR@_la_SOURCES = \
 	lib/fy-input.c lib/fy-input.h \
 	lib/fy-docstate.c lib/fy-docstate.h \
 	lib/fy-doc.c lib/fy-doc.h \
+	lib/fy-docbuilder.c lib/fy-docbuilder.h \
 	lib/fy-emit.c lib/fy-emit.h lib/fy-emit-accum.h \
 	lib/fy-utils.c lib/fy-utils.h \
 	lib/fy-event.h lib/fy-event.c \
@@ -461,14 +451,13 @@ libfyaml_@MAJOR@_@MINOR@_la_SOURCES = \
 	lib/fy-path.c lib/fy-path.h \
 	lib/fy-composer.c lib/fy-composer.h
 
-libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS = $(AM_CPPFLAGS) \
+libfyaml_la_CPPFLAGS = $(AM_CPPFLAGS) \
 				       -I$(top_srcdir)/src/lib \
 				       -I$(top_srcdir)/src/xxhash
 
-libfyaml_@MAJOR@_@MINOR@_la_CFLAGS = $(AM_CFLAGS)
-libfyaml_@MAJOR@_@MINOR@_la_LDFLAGS = $(AM_LDFLAGS) $(AM_LIBLDFLAGS) \
-		      $(VERSIONING_LDFLAGS) \
-		      -version-info 0:0:0
+libfyaml_la_CFLAGS = $(AM_CFLAGS)
+libfyaml_la_LDFLAGS = $(AM_LDFLAGS) $(AM_LIBLDFLAGS) \
+		      -version $(LIBTOOL_VERSION)
 
 @HAVE_LIBYAML_TRUE@libfyaml_parser_SOURCES = \
 @HAVE_LIBYAML_TRUE@	internal/libfyaml-parser.c \
@@ -479,7 +468,7 @@ libfyaml_@MAJOR@_@MINOR@_la_LDFLAGS = $(AM_LDFLAGS) $(AM_LIBLDFLAGS) \
 @HAVE_LIBYAML_TRUE@			   -I$(top_srcdir)/src/lib \
 @HAVE_LIBYAML_TRUE@			   -I$(top_srcdir)/src/xxhash
 
-@HAVE_LIBYAML_TRUE@libfyaml_parser_LDADD = $(AM_LDADD) $(LIBYAML_LIBS) libfyaml-@MAJOR@.@MINOR@.la
+@HAVE_LIBYAML_TRUE@libfyaml_parser_LDADD = $(AM_LDADD) $(LIBYAML_LIBS) libfyaml.la
 @HAVE_LIBYAML_TRUE@libfyaml_parser_CFLAGS = $(AM_CFLAGS) $(LIBYAML_CFLAGS)
 @HAVE_LIBYAML_TRUE@libfyaml_parser_LDFLAGS = $(AM_LDFLAGS)
 fy_tool_SOURCES = \
@@ -487,7 +476,7 @@ fy_tool_SOURCES = \
 	valgrind/fy-valgrind.h
 
 fy_tool_CPPFLAGS = $(AM_CPPFLAGS) -I$(top_srcdir)/src/valgrind
-fy_tool_LDADD = $(AM_LDADD) libfyaml-@MAJOR@.@MINOR@.la
+fy_tool_LDADD = $(AM_LDADD) libfyaml.la
 fy_tool_CFLAGS = $(AM_CFLAGS)
 fy_tool_LDFLAGS = $(AM_LDFLAGS)
 include_HEADERS = \
@@ -567,33 +556,35 @@ lib/$(am__dirstamp):
 lib/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) lib/$(DEPDIR)
 	@: > lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-parse.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-parse.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utf8.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-utf8.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-types.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-types.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-diag.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-diag.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-dump.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-dump.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-atom.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-atom.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-ctype.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-ctype.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-token.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-token.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-input.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-input.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-docstate.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-docstate.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-doc.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-doc.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-emit.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-docbuilder.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utils.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-emit.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-event.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-utils.lo: lib/$(am__dirstamp) \
+	lib/$(DEPDIR)/$(am__dirstamp)
+lib/libfyaml_la-fy-event.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
 xxhash/$(am__dirstamp):
 	@$(MKDIR_P) xxhash
@@ -601,19 +592,19 @@ xxhash/$(am__dirstamp):
 xxhash/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) xxhash/$(DEPDIR)
 	@: > xxhash/$(DEPDIR)/$(am__dirstamp)
-xxhash/libfyaml_@MAJOR@_@MINOR@_la-xxhash.lo: xxhash/$(am__dirstamp) \
+xxhash/libfyaml_la-xxhash.lo: xxhash/$(am__dirstamp) \
 	xxhash/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-accel.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-accel.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-walk.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-walk.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-path.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-path.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-composer.lo: lib/$(am__dirstamp) \
+lib/libfyaml_la-fy-composer.lo: lib/$(am__dirstamp) \
 	lib/$(DEPDIR)/$(am__dirstamp)
 
-libfyaml-@MAJOR@.@MINOR@.la: $(libfyaml_@MAJOR@_@MINOR@_la_OBJECTS) $(libfyaml_@MAJOR@_@MINOR@_la_DEPENDENCIES) $(EXTRA_libfyaml_@MAJOR@_@MINOR@_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(libfyaml_@MAJOR@_@MINOR@_la_LINK) -rpath $(libdir) $(libfyaml_@MAJOR@_@MINOR@_la_OBJECTS) $(libfyaml_@MAJOR@_@MINOR@_la_LIBADD) $(LIBS)
+libfyaml.la: $(libfyaml_la_OBJECTS) $(libfyaml_la_DEPENDENCIES) $(EXTRA_libfyaml_la_DEPENDENCIES) 
+	$(AM_V_CCLD)$(libfyaml_la_LINK) -rpath $(libdir) $(libfyaml_la_OBJECTS) $(libfyaml_la_LIBADD) $(LIBS)
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
 	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
@@ -710,26 +701,27 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@internal/$(DEPDIR)/libfyaml_parser-libfyaml-parser.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-accel.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-atom.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-composer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-ctype.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-diag.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-doc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-docstate.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-dump.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-emit.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-event.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-input.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-parse.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-path.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-token.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-types.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-utf8.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-utils.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-walk.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-accel.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-atom.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-composer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-ctype.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-diag.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-doc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-docbuilder.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-docstate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-dump.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-emit.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-event.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-input.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-parse.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-path.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-token.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-types.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-utf8.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-utils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lib/$(DEPDIR)/libfyaml_la-fy-walk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@tool/$(DEPDIR)/fy_tool-fy-tool.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@xxhash/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-xxhash.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@xxhash/$(DEPDIR)/libfyaml_la-xxhash.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -755,138 +747,145 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-parse.lo: lib/fy-parse.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-parse.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-parse.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-parse.lo `test -f 'lib/fy-parse.c' || echo '$(srcdir)/'`lib/fy-parse.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-parse.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-parse.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-parse.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-parse.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-parse.lo: lib/fy-parse.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-parse.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-parse.Tpo -c -o lib/libfyaml_la-fy-parse.lo `test -f 'lib/fy-parse.c' || echo '$(srcdir)/'`lib/fy-parse.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-parse.Tpo lib/$(DEPDIR)/libfyaml_la-fy-parse.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-parse.c' object='lib/libfyaml_la-fy-parse.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-parse.lo `test -f 'lib/fy-parse.c' || echo '$(srcdir)/'`lib/fy-parse.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-parse.lo `test -f 'lib/fy-parse.c' || echo '$(srcdir)/'`lib/fy-parse.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utf8.lo: lib/fy-utf8.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utf8.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-utf8.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utf8.lo `test -f 'lib/fy-utf8.c' || echo '$(srcdir)/'`lib/fy-utf8.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-utf8.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-utf8.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-utf8.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utf8.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-utf8.lo: lib/fy-utf8.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-utf8.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-utf8.Tpo -c -o lib/libfyaml_la-fy-utf8.lo `test -f 'lib/fy-utf8.c' || echo '$(srcdir)/'`lib/fy-utf8.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-utf8.Tpo lib/$(DEPDIR)/libfyaml_la-fy-utf8.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-utf8.c' object='lib/libfyaml_la-fy-utf8.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utf8.lo `test -f 'lib/fy-utf8.c' || echo '$(srcdir)/'`lib/fy-utf8.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-utf8.lo `test -f 'lib/fy-utf8.c' || echo '$(srcdir)/'`lib/fy-utf8.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-types.lo: lib/fy-types.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-types.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-types.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-types.lo `test -f 'lib/fy-types.c' || echo '$(srcdir)/'`lib/fy-types.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-types.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-types.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-types.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-types.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-types.lo: lib/fy-types.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-types.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-types.Tpo -c -o lib/libfyaml_la-fy-types.lo `test -f 'lib/fy-types.c' || echo '$(srcdir)/'`lib/fy-types.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-types.Tpo lib/$(DEPDIR)/libfyaml_la-fy-types.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-types.c' object='lib/libfyaml_la-fy-types.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-types.lo `test -f 'lib/fy-types.c' || echo '$(srcdir)/'`lib/fy-types.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-types.lo `test -f 'lib/fy-types.c' || echo '$(srcdir)/'`lib/fy-types.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-diag.lo: lib/fy-diag.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-diag.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-diag.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-diag.lo `test -f 'lib/fy-diag.c' || echo '$(srcdir)/'`lib/fy-diag.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-diag.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-diag.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-diag.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-diag.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-diag.lo: lib/fy-diag.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-diag.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-diag.Tpo -c -o lib/libfyaml_la-fy-diag.lo `test -f 'lib/fy-diag.c' || echo '$(srcdir)/'`lib/fy-diag.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-diag.Tpo lib/$(DEPDIR)/libfyaml_la-fy-diag.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-diag.c' object='lib/libfyaml_la-fy-diag.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-diag.lo `test -f 'lib/fy-diag.c' || echo '$(srcdir)/'`lib/fy-diag.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-diag.lo `test -f 'lib/fy-diag.c' || echo '$(srcdir)/'`lib/fy-diag.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-dump.lo: lib/fy-dump.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-dump.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-dump.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-dump.lo `test -f 'lib/fy-dump.c' || echo '$(srcdir)/'`lib/fy-dump.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-dump.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-dump.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-dump.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-dump.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-dump.lo: lib/fy-dump.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-dump.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-dump.Tpo -c -o lib/libfyaml_la-fy-dump.lo `test -f 'lib/fy-dump.c' || echo '$(srcdir)/'`lib/fy-dump.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-dump.Tpo lib/$(DEPDIR)/libfyaml_la-fy-dump.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-dump.c' object='lib/libfyaml_la-fy-dump.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-dump.lo `test -f 'lib/fy-dump.c' || echo '$(srcdir)/'`lib/fy-dump.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-dump.lo `test -f 'lib/fy-dump.c' || echo '$(srcdir)/'`lib/fy-dump.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-atom.lo: lib/fy-atom.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-atom.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-atom.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-atom.lo `test -f 'lib/fy-atom.c' || echo '$(srcdir)/'`lib/fy-atom.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-atom.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-atom.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-atom.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-atom.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-atom.lo: lib/fy-atom.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-atom.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-atom.Tpo -c -o lib/libfyaml_la-fy-atom.lo `test -f 'lib/fy-atom.c' || echo '$(srcdir)/'`lib/fy-atom.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-atom.Tpo lib/$(DEPDIR)/libfyaml_la-fy-atom.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-atom.c' object='lib/libfyaml_la-fy-atom.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-atom.lo `test -f 'lib/fy-atom.c' || echo '$(srcdir)/'`lib/fy-atom.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-atom.lo `test -f 'lib/fy-atom.c' || echo '$(srcdir)/'`lib/fy-atom.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-ctype.lo: lib/fy-ctype.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-ctype.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-ctype.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-ctype.lo `test -f 'lib/fy-ctype.c' || echo '$(srcdir)/'`lib/fy-ctype.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-ctype.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-ctype.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-ctype.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-ctype.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-ctype.lo: lib/fy-ctype.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-ctype.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-ctype.Tpo -c -o lib/libfyaml_la-fy-ctype.lo `test -f 'lib/fy-ctype.c' || echo '$(srcdir)/'`lib/fy-ctype.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-ctype.Tpo lib/$(DEPDIR)/libfyaml_la-fy-ctype.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-ctype.c' object='lib/libfyaml_la-fy-ctype.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-ctype.lo `test -f 'lib/fy-ctype.c' || echo '$(srcdir)/'`lib/fy-ctype.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-ctype.lo `test -f 'lib/fy-ctype.c' || echo '$(srcdir)/'`lib/fy-ctype.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-token.lo: lib/fy-token.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-token.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-token.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-token.lo `test -f 'lib/fy-token.c' || echo '$(srcdir)/'`lib/fy-token.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-token.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-token.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-token.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-token.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-token.lo: lib/fy-token.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-token.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-token.Tpo -c -o lib/libfyaml_la-fy-token.lo `test -f 'lib/fy-token.c' || echo '$(srcdir)/'`lib/fy-token.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-token.Tpo lib/$(DEPDIR)/libfyaml_la-fy-token.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-token.c' object='lib/libfyaml_la-fy-token.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-token.lo `test -f 'lib/fy-token.c' || echo '$(srcdir)/'`lib/fy-token.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-token.lo `test -f 'lib/fy-token.c' || echo '$(srcdir)/'`lib/fy-token.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-input.lo: lib/fy-input.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-input.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-input.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-input.lo `test -f 'lib/fy-input.c' || echo '$(srcdir)/'`lib/fy-input.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-input.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-input.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-input.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-input.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-input.lo: lib/fy-input.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-input.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-input.Tpo -c -o lib/libfyaml_la-fy-input.lo `test -f 'lib/fy-input.c' || echo '$(srcdir)/'`lib/fy-input.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-input.Tpo lib/$(DEPDIR)/libfyaml_la-fy-input.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-input.c' object='lib/libfyaml_la-fy-input.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-input.lo `test -f 'lib/fy-input.c' || echo '$(srcdir)/'`lib/fy-input.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-input.lo `test -f 'lib/fy-input.c' || echo '$(srcdir)/'`lib/fy-input.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-docstate.lo: lib/fy-docstate.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-docstate.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-docstate.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-docstate.lo `test -f 'lib/fy-docstate.c' || echo '$(srcdir)/'`lib/fy-docstate.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-docstate.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-docstate.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-docstate.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-docstate.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-docstate.lo: lib/fy-docstate.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-docstate.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-docstate.Tpo -c -o lib/libfyaml_la-fy-docstate.lo `test -f 'lib/fy-docstate.c' || echo '$(srcdir)/'`lib/fy-docstate.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-docstate.Tpo lib/$(DEPDIR)/libfyaml_la-fy-docstate.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-docstate.c' object='lib/libfyaml_la-fy-docstate.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-docstate.lo `test -f 'lib/fy-docstate.c' || echo '$(srcdir)/'`lib/fy-docstate.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-docstate.lo `test -f 'lib/fy-docstate.c' || echo '$(srcdir)/'`lib/fy-docstate.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-doc.lo: lib/fy-doc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-doc.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-doc.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-doc.lo `test -f 'lib/fy-doc.c' || echo '$(srcdir)/'`lib/fy-doc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-doc.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-doc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-doc.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-doc.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-doc.lo: lib/fy-doc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-doc.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-doc.Tpo -c -o lib/libfyaml_la-fy-doc.lo `test -f 'lib/fy-doc.c' || echo '$(srcdir)/'`lib/fy-doc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-doc.Tpo lib/$(DEPDIR)/libfyaml_la-fy-doc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-doc.c' object='lib/libfyaml_la-fy-doc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-doc.lo `test -f 'lib/fy-doc.c' || echo '$(srcdir)/'`lib/fy-doc.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-doc.lo `test -f 'lib/fy-doc.c' || echo '$(srcdir)/'`lib/fy-doc.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-emit.lo: lib/fy-emit.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-emit.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-emit.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-emit.lo `test -f 'lib/fy-emit.c' || echo '$(srcdir)/'`lib/fy-emit.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-emit.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-emit.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-emit.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-emit.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-docbuilder.lo: lib/fy-docbuilder.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-docbuilder.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-docbuilder.Tpo -c -o lib/libfyaml_la-fy-docbuilder.lo `test -f 'lib/fy-docbuilder.c' || echo '$(srcdir)/'`lib/fy-docbuilder.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-docbuilder.Tpo lib/$(DEPDIR)/libfyaml_la-fy-docbuilder.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-docbuilder.c' object='lib/libfyaml_la-fy-docbuilder.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-emit.lo `test -f 'lib/fy-emit.c' || echo '$(srcdir)/'`lib/fy-emit.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-docbuilder.lo `test -f 'lib/fy-docbuilder.c' || echo '$(srcdir)/'`lib/fy-docbuilder.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utils.lo: lib/fy-utils.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utils.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-utils.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utils.lo `test -f 'lib/fy-utils.c' || echo '$(srcdir)/'`lib/fy-utils.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-utils.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-utils.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-utils.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utils.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-emit.lo: lib/fy-emit.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-emit.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-emit.Tpo -c -o lib/libfyaml_la-fy-emit.lo `test -f 'lib/fy-emit.c' || echo '$(srcdir)/'`lib/fy-emit.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-emit.Tpo lib/$(DEPDIR)/libfyaml_la-fy-emit.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-emit.c' object='lib/libfyaml_la-fy-emit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-utils.lo `test -f 'lib/fy-utils.c' || echo '$(srcdir)/'`lib/fy-utils.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-emit.lo `test -f 'lib/fy-emit.c' || echo '$(srcdir)/'`lib/fy-emit.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-event.lo: lib/fy-event.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-event.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-event.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-event.lo `test -f 'lib/fy-event.c' || echo '$(srcdir)/'`lib/fy-event.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-event.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-event.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-event.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-event.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-utils.lo: lib/fy-utils.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-utils.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-utils.Tpo -c -o lib/libfyaml_la-fy-utils.lo `test -f 'lib/fy-utils.c' || echo '$(srcdir)/'`lib/fy-utils.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-utils.Tpo lib/$(DEPDIR)/libfyaml_la-fy-utils.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-utils.c' object='lib/libfyaml_la-fy-utils.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-event.lo `test -f 'lib/fy-event.c' || echo '$(srcdir)/'`lib/fy-event.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-utils.lo `test -f 'lib/fy-utils.c' || echo '$(srcdir)/'`lib/fy-utils.c
 
-xxhash/libfyaml_@MAJOR@_@MINOR@_la-xxhash.lo: xxhash/xxhash.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT xxhash/libfyaml_@MAJOR@_@MINOR@_la-xxhash.lo -MD -MP -MF xxhash/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-xxhash.Tpo -c -o xxhash/libfyaml_@MAJOR@_@MINOR@_la-xxhash.lo `test -f 'xxhash/xxhash.c' || echo '$(srcdir)/'`xxhash/xxhash.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) xxhash/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-xxhash.Tpo xxhash/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-xxhash.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='xxhash/xxhash.c' object='xxhash/libfyaml_@MAJOR@_@MINOR@_la-xxhash.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-event.lo: lib/fy-event.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-event.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-event.Tpo -c -o lib/libfyaml_la-fy-event.lo `test -f 'lib/fy-event.c' || echo '$(srcdir)/'`lib/fy-event.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-event.Tpo lib/$(DEPDIR)/libfyaml_la-fy-event.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-event.c' object='lib/libfyaml_la-fy-event.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o xxhash/libfyaml_@MAJOR@_@MINOR@_la-xxhash.lo `test -f 'xxhash/xxhash.c' || echo '$(srcdir)/'`xxhash/xxhash.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-event.lo `test -f 'lib/fy-event.c' || echo '$(srcdir)/'`lib/fy-event.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-accel.lo: lib/fy-accel.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-accel.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-accel.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-accel.lo `test -f 'lib/fy-accel.c' || echo '$(srcdir)/'`lib/fy-accel.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-accel.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-accel.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-accel.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-accel.lo' libtool=yes @AMDEPBACKSLASH@
+xxhash/libfyaml_la-xxhash.lo: xxhash/xxhash.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT xxhash/libfyaml_la-xxhash.lo -MD -MP -MF xxhash/$(DEPDIR)/libfyaml_la-xxhash.Tpo -c -o xxhash/libfyaml_la-xxhash.lo `test -f 'xxhash/xxhash.c' || echo '$(srcdir)/'`xxhash/xxhash.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) xxhash/$(DEPDIR)/libfyaml_la-xxhash.Tpo xxhash/$(DEPDIR)/libfyaml_la-xxhash.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='xxhash/xxhash.c' object='xxhash/libfyaml_la-xxhash.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-accel.lo `test -f 'lib/fy-accel.c' || echo '$(srcdir)/'`lib/fy-accel.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o xxhash/libfyaml_la-xxhash.lo `test -f 'xxhash/xxhash.c' || echo '$(srcdir)/'`xxhash/xxhash.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-walk.lo: lib/fy-walk.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-walk.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-walk.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-walk.lo `test -f 'lib/fy-walk.c' || echo '$(srcdir)/'`lib/fy-walk.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-walk.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-walk.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-walk.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-walk.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-accel.lo: lib/fy-accel.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-accel.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-accel.Tpo -c -o lib/libfyaml_la-fy-accel.lo `test -f 'lib/fy-accel.c' || echo '$(srcdir)/'`lib/fy-accel.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-accel.Tpo lib/$(DEPDIR)/libfyaml_la-fy-accel.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-accel.c' object='lib/libfyaml_la-fy-accel.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-walk.lo `test -f 'lib/fy-walk.c' || echo '$(srcdir)/'`lib/fy-walk.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-accel.lo `test -f 'lib/fy-accel.c' || echo '$(srcdir)/'`lib/fy-accel.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-path.lo: lib/fy-path.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-path.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-path.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-path.lo `test -f 'lib/fy-path.c' || echo '$(srcdir)/'`lib/fy-path.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-path.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-path.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-path.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-path.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-walk.lo: lib/fy-walk.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-walk.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-walk.Tpo -c -o lib/libfyaml_la-fy-walk.lo `test -f 'lib/fy-walk.c' || echo '$(srcdir)/'`lib/fy-walk.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-walk.Tpo lib/$(DEPDIR)/libfyaml_la-fy-walk.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-walk.c' object='lib/libfyaml_la-fy-walk.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-path.lo `test -f 'lib/fy-path.c' || echo '$(srcdir)/'`lib/fy-path.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-walk.lo `test -f 'lib/fy-walk.c' || echo '$(srcdir)/'`lib/fy-walk.c
 
-lib/libfyaml_@MAJOR@_@MINOR@_la-fy-composer.lo: lib/fy-composer.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_@MAJOR@_@MINOR@_la-fy-composer.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-composer.Tpo -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-composer.lo `test -f 'lib/fy-composer.c' || echo '$(srcdir)/'`lib/fy-composer.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-composer.Tpo lib/$(DEPDIR)/libfyaml_@MAJOR@_@MINOR@_la-fy-composer.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-composer.c' object='lib/libfyaml_@MAJOR@_@MINOR@_la-fy-composer.lo' libtool=yes @AMDEPBACKSLASH@
+lib/libfyaml_la-fy-path.lo: lib/fy-path.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-path.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-path.Tpo -c -o lib/libfyaml_la-fy-path.lo `test -f 'lib/fy-path.c' || echo '$(srcdir)/'`lib/fy-path.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-path.Tpo lib/$(DEPDIR)/libfyaml_la-fy-path.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-path.c' object='lib/libfyaml_la-fy-path.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_@MAJOR@_@MINOR@_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_@MAJOR@_@MINOR@_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_@MAJOR@_@MINOR@_la-fy-composer.lo `test -f 'lib/fy-composer.c' || echo '$(srcdir)/'`lib/fy-composer.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-path.lo `test -f 'lib/fy-path.c' || echo '$(srcdir)/'`lib/fy-path.c
+
+lib/libfyaml_la-fy-composer.lo: lib/fy-composer.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -MT lib/libfyaml_la-fy-composer.lo -MD -MP -MF lib/$(DEPDIR)/libfyaml_la-fy-composer.Tpo -c -o lib/libfyaml_la-fy-composer.lo `test -f 'lib/fy-composer.c' || echo '$(srcdir)/'`lib/fy-composer.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) lib/$(DEPDIR)/libfyaml_la-fy-composer.Tpo lib/$(DEPDIR)/libfyaml_la-fy-composer.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='lib/fy-composer.c' object='lib/libfyaml_la-fy-composer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libfyaml_la_CPPFLAGS) $(CPPFLAGS) $(libfyaml_la_CFLAGS) $(CFLAGS) -c -o lib/libfyaml_la-fy-composer.lo `test -f 'lib/fy-composer.c' || echo '$(srcdir)/'`lib/fy-composer.c
 
 tool/fy_tool-fy-tool.o: tool/fy-tool.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(fy_tool_CPPFLAGS) $(CPPFLAGS) $(fy_tool_CFLAGS) $(CFLAGS) -MT tool/fy_tool-fy-tool.o -MD -MP -MF tool/$(DEPDIR)/fy_tool-fy-tool.Tpo -c -o tool/fy_tool-fy-tool.o `test -f 'tool/fy-tool.c' || echo '$(srcdir)/'`tool/fy-tool.c
