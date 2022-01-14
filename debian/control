@@ -14,7 +14,7 @@ Package: libfyaml-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends}, libfyaml-0.7 (= ${binary:Version})
+Depends: ${misc:Depends}, libfyaml (= ${binary:Version})
 Description: Fully feature complete YAML parser and emitter.
  Fully feature complete YAML parser and emitter, supporting the latest YAML
  spec and passing the full YAML testsuite.
@@ -27,7 +27,7 @@ Description: Fully feature complete YAML parser and emitter.
 Package: libfyaml-utils
 Section: devel
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}, libfyaml-0.7 (= ${binary:Version})
+Depends: ${misc:Depends}, ${shlibs:Depends}, libfyaml (= ${binary:Version})
 Description: Fully feature complete YAML parser and emitter.
  Fully feature complete YAML parser and emitter, supporting the latest YAML
  spec and passing the full YAML testsuite.
@@ -37,7 +37,7 @@ Description: Fully feature complete YAML parser and emitter.
  .
  This package contains utilities manipulating YAML files.
 
-Package: libfyaml-0.7
+Package: libfyaml
 Architecture: any
 Multi-Arch: same
 Depends: ${shlibs:Depends}, ${shlibs:Depends}, ${misc:Depends}
