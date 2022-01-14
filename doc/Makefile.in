@@ -94,7 +94,8 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_enable_debug.m4 \
 	$(top_srcdir)/m4/ax_pthread.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
 	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/shave.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/shave.m4 $(top_srcdir)/.libtool-version \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
@@ -152,7 +153,6 @@ CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
-DEBVERSION = @DEBVERSION@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
 DLLTOOL = @DLLTOOL@
@@ -191,6 +191,7 @@ LIBLTDL = @LIBLTDL@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
+LIBTOOL_VERSION = @LIBTOOL_VERSION@
 LIBYAML_CFLAGS = @LIBYAML_CFLAGS@
 LIBYAML_LIBS = @LIBYAML_LIBS@
 LIPO = @LIPO@
@@ -300,13 +301,17 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 BUILDDIR = _build
+
+# otherwise, install the canned ones
+@HAVE_SPHINX_FALSE@MANPAGES1 = $(srcdir)/canned-man/fy-tool.1
 @HAVE_SPHINX_TRUE@MANPAGES1 = $(BUILDDIR)/man/fy-tool.1
 EXTRA_DIST = \
 	conf.py \
 	index.rst \
 	intro.rst \
 	libfyaml.rst \
-	man/fy-tool.rst
+	man/fy-tool.rst \
+	canned-man/fy-tool.1
 
 all: all-am
 
@@ -423,8 +428,6 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-@HAVE_SPHINX_FALSE@install-data-hook:
-@HAVE_SPHINX_FALSE@uninstall-hook:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local mostlyclean-am
@@ -542,23 +545,27 @@ uninstall-am:
 @HAVE_SPHINX_TRUE@doc-%: 
 @HAVE_SPHINX_TRUE@	srctree=@top_srcdir@ @SPHINX@ -M `echo $@ | sed -s 's/^doc-//g'` "@srcdir@" "$(BUILDDIR)"
 
+# if we have sphinx generate the manpages
 @HAVE_SPHINX_TRUE@$(MANPAGES1): doc-man
 
-@HAVE_SPHINX_TRUE@install-data-hook: $(MANPAGES1)
-@HAVE_SPHINX_TRUE@	$(MKDIR_P) "$(DESTDIR)$(mandir)/man1"
-@HAVE_SPHINX_TRUE@	@for i in "$(MANPAGES1)"; do \
-@HAVE_SPHINX_TRUE@	  $(INSTALL_DATA) $$i "$(DESTDIR)$(mandir)/man1"; \
-@HAVE_SPHINX_TRUE@	done
-@HAVE_SPHINX_TRUE@	(cd "$(DESTDIR)$(mandir)/man1" && $(LN_S) -f fy-tool.1 fy-dump.1)
-@HAVE_SPHINX_TRUE@	(cd "$(DESTDIR)$(mandir)/man1" && $(LN_S) -f fy-tool.1 fy-filter.1)
-@HAVE_SPHINX_TRUE@	(cd "$(DESTDIR)$(mandir)/man1" && $(LN_S) -f fy-tool.1 fy-testsuite.1)
-@HAVE_SPHINX_TRUE@	(cd "$(DESTDIR)$(mandir)/man1" && $(LN_S) -f fy-tool.1 fy-join.1)
+install-data-hook: $(MANPAGES1)
+	$(MKDIR_P) "$(DESTDIR)$(mandir)/man1"
+	@for i in "$(MANPAGES1)"; do \
+	  $(INSTALL_DATA) $$i "$(DESTDIR)$(mandir)/man1"; \
+	done
+	(cd "$(DESTDIR)$(mandir)/man1" && $(LN_S) -f fy-tool.1 fy-dump.1)
+	(cd "$(DESTDIR)$(mandir)/man1" && $(LN_S) -f fy-tool.1 fy-filter.1)
+	(cd "$(DESTDIR)$(mandir)/man1" && $(LN_S) -f fy-tool.1 fy-testsuite.1)
+	(cd "$(DESTDIR)$(mandir)/man1" && $(LN_S) -f fy-tool.1 fy-join.1)
+	(cd "$(DESTDIR)$(mandir)/man1" && $(LN_S) -f fy-tool.1 fy-ypath.1)
+	(cd "$(DESTDIR)$(mandir)/man1" && $(LN_S) -f fy-tool.1 fy-compose.1)
 
-@HAVE_SPHINX_TRUE@uninstall-hook:
-@HAVE_SPHINX_TRUE@	@for i in "$(MANPAGES1)"; do \
-@HAVE_SPHINX_TRUE@	  rm -f "$(DESTDIR)$(mandir)/man1/`basename $$i`"; \
-@HAVE_SPHINX_TRUE@	done
-@HAVE_SPHINX_TRUE@	(cd "$(DESTDIR)$(mandir)/man1" && rm -f fy-dump.1 fy-filter.1 fy-testsuite.1 fy-join.1)
+uninstall-hook:
+	@for i in "$(MANPAGES1)"; do \
+	  rm -f "$(DESTDIR)$(mandir)/man1/`basename $$i`"; \
+	done
+	(cd "$(DESTDIR)$(mandir)/man1" && \
+		rm -f fy-dump.1 fy-filter.1 fy-testsuite.1 fy-join.1 fy-ypath.1 fy-compose.1)
 
 clean-local:
 	@rm -rf "$(BUILDDIR)"

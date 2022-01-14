@@ -7,6 +7,10 @@ for basetst in test-suite-data/[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]/; do
 		if [ ! -e "$tst/===" ]; then
 			continue
 		fi
+		# skip tests that are expected to fail
+		if [ -e "$tst/error" ]; then
+			continue
+		fi
 		count=`expr $count + 1`
 	done
 done
@@ -14,7 +18,7 @@ done
 # output plan
 echo 1..$count
 
-skiplist=""
+skiplist="2JQS"
 xfaillist=""
 
 i=0
@@ -24,6 +28,11 @@ for basetst in test-suite-data/[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]/; do
 
 		# there must be a test there
 		if [ ! -e "$tst/===" ]; then
+			continue
+		fi
+
+		# skip tests that are expected to fail
+		if [ -e "$tst/error" ]; then
 			continue
 		fi
 
@@ -43,7 +52,7 @@ for basetst in test-suite-data/[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]/; do
 		directive=""
 		for skip in $skiplist; do
 			if [ "$test_subtest_id" == "$skip" ]; then
-				directive=" # SKIP"
+				directive=" # skip: duplicate keys in testcase; cannot load as document"
 				break
 			fi
 		done
@@ -51,34 +60,17 @@ for basetst in test-suite-data/[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9]/; do
 		res="ok"
 		if [ "x$directive" == "x" ]; then
 			res="not ok"
-
-			pass_yaml=0
-			${TOP_BUILDDIR}/src/fy-tool --testsuite "$tst/in.yaml" >"$t"
+			# run the test using document-event-stream
+			${TOP_BUILDDIR}/src/fy-tool --testsuite --document-event-stream "$tst/in.yaml" >"$t"
 			if [ $? -eq 0 ]; then
-				pass_yaml=1
-			fi
-
-			if [ -e "$tst/error" ]; then
-				# test is expected to fail
-				if [ $pass_yaml == "0" ]; then
+				diff -u "$tst/test.event" "$t"
+				if [ $? -eq 0 ]; then
 					res="ok"
 				else
 					res="not ok"
 				fi
 			else
-				# test is expected to pass
-				if [ $pass_yaml == "1" ]; then
-					diff_yaml=0
-					# diff -u "$tst/test.event" "$t" | sed -e 's/^/# /'
-					diff -u "$tst/test.event" "$t"
-					if [ $? -eq 0 ]; then
-						res="ok"
-					else
-						res="not ok"
-					fi
-				else
-					res="not ok"
-				fi
+				res="not ok"
 			fi
 
 			rm -f "$t"
