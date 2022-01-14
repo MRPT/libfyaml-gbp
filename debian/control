@@ -8,7 +8,8 @@ Build-Depends: debhelper-compat (= 12),
 Standards-Version: 4.6.0
 Section: libs
 Homepage: https://github.com/pantoniou/libfyaml
-Vcs-Git: https://github.com/pantoniou/libfyaml.git
+Vcs-Git: https://github.com/MRPT/libfyaml-gbp.git
+Vcs-Browser: https://github.com/MRPT/libfyaml-gbp
 
 Package: libfyaml-dev
 Section: libdevel
