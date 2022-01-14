@@ -1,18 +1,13 @@
-libfyaml (0.7.11-1) focal; urgency=medium
+libfyaml (0.7.11-1) unstable; urgency=medium
 
   [ Jose Luis Blanco Claraco ]
+  * First Debian package (Closes: #998859).
   * fix multiarch in apps package
   * add d/watch file
   * Fix watch file version to 4
   * New upstream version 0.7.11
-
- -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Fri, 14 Jan 2022 22:51:33 +0100
-
-libfyaml (0.7.3-1) unstable; urgency=medium
-
-  * First Debian package (Closes: #998859).
   * Based on original upstream d/* files by Pantelis Antoniou, updating
     d/* files to current standards.
 
- -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Tue, 16 Nov 2021 01:04:27 +0100
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Fri, 14 Jan 2022 22:51:33 +0100
 
